@@ -1,13 +1,62 @@
+@font-face {
+  font-family: 'Roobert TRIAL';
+  src: url('/fonts/RoobertTRIAL-Regular-BF67243fd53fdf2.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert TRIAL';
+  src: url('/fonts/RoobertTRIAL-RegularItalic-BF67243fd5414aa.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert TRIAL';
+  src: url('/fonts/RoobertTRIAL-Light-BF67243fd502239.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert TRIAL';
+  src: url('/fonts/RoobertTRIAL-Medium-BF67243fd53e059.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert TRIAL';
+  src: url('/fonts/RoobertTRIAL-SemiBold-BF67243fd54213d.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert TRIAL';
+  src: url('/fonts/RoobertTRIAL-Bold-BF67243fd540abb.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert TRIAL';
+  src: url('/fonts/RoobertTRIAL-Heavy-BF67243fd53e164.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 html {
@@ -25,8 +74,8 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,8 +91,4 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+

@@ -1,51 +1,79 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
   display: flex;
-  flex: 1;
+  min-height: 100vh;
+  width: 100%;
   flex-direction: column;
+  background-color: #ffffff;
+}
+
+.topBar {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  height: 64px;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand,
+.introLabel {
+  font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #000000;
+}
+
+.introLabel {
+  color: #8a8a8a;
 }
 
 .main {
   display: flex;
   flex: 1;
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 }
 
-.intro {
+.headingBox {
+  width: 680px;
+  height: 240px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-64px);
+  /* border: 1px solid #d9d9d9; */
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+.heading {
+  font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
+  font-size: 60px;
+  font-weight: 500;
+  line-height: 1.05;
+  color: #000000;
+  text-align: center;
+  opacity: 0;
+}
+
+.headingVisible {
+  animation: headingFadeIn 900ms ease-out forwards;
+}
+
+@keyframes headingFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .intro p {
@@ -108,8 +136,26 @@ a.secondary {
 }
 
 @media (max-width: 600px) {
+  .topBar {
+    padding: 0 16px;
+  }
+
+  .topBarLeft {
+    gap: 8px;
+  }
+
+  .brand,
+  .introLabel {
+    font-size: 12px;
+  }
+
   .main {
     padding: 48px 24px;
+  }
+
+  .headingBox {
+    width: min(680px, calc(100vw - 48px));
+    height: 240px;
   }
 
   .intro {
@@ -140,3 +186,4 @@ a.secondary {
     --button-secondary-border: #1a1a1a;
   }
 }
+
