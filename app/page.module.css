@@ -4,11 +4,13 @@
   width: 100%;
   flex-direction: column;
   background-color: #ffffff;
+  overflow-x: hidden;
 }
 
 .topBar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 64px;
   width: 100%;
   padding: 0 24px;
@@ -20,13 +22,33 @@
   gap: 12px;
 }
 
+.codeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 12px;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
 .brand,
 .introLabel {
   font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: #000000;
+}
+
+.brand {
+  border: 2.5px solid #000000;
+  border-radius: 4px;
+  padding: 8px 8px;
 }
 
 .introLabel {
@@ -36,10 +58,20 @@
 .main {
   display: flex;
   flex: 1;
+  position: relative;
   width: 100%;
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
+}
+
+.heroRail {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(320px, 680px) minmax(160px, 1fr);
+  align-items: center;
+  gap: 24px;
+  width: calc(100vw - 48px);
+  transform: translateY(-64px);
 }
 
 .headingBox {
@@ -48,22 +80,132 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-64px);
   /* border: 1px solid #d9d9d9; */
+}
+
+.sideLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+  text-decoration: none;
+  font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  color: #000000;
+  z-index: 1;
+  transition: opacity 420ms ease, visibility 420ms ease;
+}
+
+.sideLink::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 420px;
+  height: 420px;
+  border: 1px solid #d8d8d8;
+  transform: translateY(-50%) rotate(45deg);
+  transform-origin: center;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sideLinkLeft {
+  justify-self: start;
+}
+
+.sideLinkLeft::before {
+  left: -288px;
+}
+
+.sideLinkRight {
+  justify-self: end;
+}
+
+.sideLinkRight::before {
+  right: -288px;
+}
+
+.diamondButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #111111;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.diamondIcon {
+  transform: rotate(-45deg);
+  font-size: 15px;
+}
+
+.hoverLeft .headingLineTop {
+  transform: translateX(280px);
+}
+
+.hoverLeft .headingLineBottom {
+  transform: translateX(360px);
+}
+
+.hoverRight .headingLineTop {
+  transform: translateX(-280px);
+}
+
+.hoverRight .headingLineBottom {
+  transform: translateX(-360px);
+}
+
+.hoverLeft .sideLinkRight,
+.hoverRight .sideLinkLeft {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .heading {
   font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
-  font-size: 60px;
-  font-weight: 500;
+  font-size: 96px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
   line-height: 1.05;
   color: #000000;
-  text-align: center;
+  width: 100%;
+  margin: 0;
   opacity: 0;
+}
+
+.headingLine {
+  display: block;
+  width: 100%;
+  text-align: center;
+  transition: transform 1300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.headingLineBottom {
+  margin-top: -4px;
 }
 
 .headingVisible {
   animation: headingFadeIn 900ms ease-out forwards;
+}
+
+.cornerCopy {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  margin: 0;
+  max-width: 400px;
+  font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #4a4a4a;
 }
 
 @keyframes headingFadeIn {
@@ -133,6 +275,62 @@ a.secondary {
     background: var(--button-secondary-hover);
     border-color: transparent;
   }
+
+  .sideLink:hover .diamondButton {
+    transform: rotate(45deg) scale(1.08);
+  }
+}
+
+@media (max-width: 900px) {
+  .heroRail {
+    width: calc(100vw - 32px);
+    grid-template-columns: minmax(120px, 1fr) minmax(260px, 1fr) minmax(120px, 1fr);
+    transform: translateY(-32px);
+  }
+
+  .heading {
+    font-size: 60px;
+  }
+
+  .sideLink {
+    font-size: 7px;
+    letter-spacing: 0.08em;
+    gap: 7px;
+  }
+
+  .sideLink::before {
+    width: 240px;
+    height: 240px;
+  }
+
+  .sideLinkLeft::before {
+    left: -184px;
+  }
+
+  .sideLinkRight::before {
+    right: -184px;
+  }
+
+  .diamondButton {
+    width: 34px;
+    height: 34px;
+  }
+
+  .hoverLeft .headingLineTop {
+    transform: translateX(180px);
+  }
+
+  .hoverLeft .headingLineBottom {
+    transform: translateX(240px);
+  }
+
+  .hoverRight .headingLineTop {
+    transform: translateX(-180px);
+  }
+
+  .hoverRight .headingLineBottom {
+    transform: translateX(-240px);
+  }
 }
 
 @media (max-width: 600px) {
@@ -149,13 +347,62 @@ a.secondary {
     font-size: 12px;
   }
 
+  .codeBadge {
+    min-height: 24px;
+    padding: 0 10px;
+    font-size: 8px;
+  }
+
   .main {
     padding: 48px 24px;
   }
 
+  .cornerCopy {
+    position: static;
+    max-width: 320px;
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  .heroRail {
+    width: min(680px, calc(100vw - 48px));
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 18px;
+    transform: none;
+  }
+
+  .sideLinkLeft,
+  .sideLinkRight {
+    justify-self: center;
+  }
+
+  .sideLink::before {
+    display: none;
+  }
+
+  .hoverLeft .headingLineTop,
+  .hoverLeft .headingLineBottom,
+  .hoverRight .headingLineTop,
+  .hoverRight .headingLineBottom {
+    transform: none;
+  }
+
+  .hoverLeft .sideLinkRight,
+  .hoverRight .sideLinkLeft {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .headingBox {
     width: min(680px, calc(100vw - 48px));
-    height: 240px;
+    height: 180px;
+  }
+
+  .heading {
+    font-size: 36px;
+    line-height: 1.06;
   }
 
   .intro {
