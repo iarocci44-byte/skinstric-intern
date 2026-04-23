@@ -91,4 +91,73 @@ a {
   text-decoration: none;
 }
 
+.siteHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.siteHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.siteBrand,
+.siteIntroLabel {
+  font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #000000;
+}
+
+.siteBrand {
+  border: 2.5px solid #000000;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.siteIntroLabel {
+  color: #8a8a8a;
+}
+
+.siteCodeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 12px;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 600px) {
+  .siteHeader {
+    padding: 0 16px;
+  }
+
+  .siteHeaderLeft {
+    gap: 8px;
+  }
+
+  .siteBrand,
+  .siteIntroLabel {
+    font-size: 9px;
+  }
+
+  .siteCodeBadge {
+    min-height: 24px;
+    padding: 0 10px;
+    font-size: 8px;
+  }
+}
+
 

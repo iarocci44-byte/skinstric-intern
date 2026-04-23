@@ -1,0 +1,476 @@
+.page {
+  display: flex;
+  position: relative;
+  min-height: calc(100vh - 64px);
+  width: 100%;
+  flex-direction: column;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand,
+.introLabel {
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #000000;
+  text-decoration: none;
+}
+
+.brand {
+  border: 2.5px solid #000000;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.introLabel {
+  color: #8a8a8a;
+}
+
+.codeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 12px;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.analysisLabel {
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #000000;
+}
+
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(550px, 100%);
+}
+
+.inputStage {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  padding: 52px 44px;
+}
+
+.inputContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: calc(100% - 88px);
+}
+
+.inputHint {
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #6a6a6a;
+}
+
+.inputBox {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2.5px solid #000000;
+  border-radius: 0;
+  padding: 12px 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: clamp(30px, 4.8vw, 53px);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: #000000;
+  outline: none;
+  text-align: center;
+}
+
+.inputBoxOverflow {
+  text-align: left;
+}
+
+.inputBox::placeholder {
+  color: #9a9a9a;
+  opacity: 1;
+}
+
+.inputBox:focus {
+  border-color: #000000;
+  border-bottom-color: #000000;
+  box-shadow: none;
+}
+
+.inputBoxError {
+  border-bottom-color: #b42318;
+}
+
+.orbitBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  --orbit-color: #bfbfbf;
+  border-radius: 0;
+  pointer-events: none;
+  transform-origin: center;
+  background-image:
+    radial-gradient(circle, var(--orbit-color) 1.4px, transparent 1.6px),
+    radial-gradient(circle, var(--orbit-color) 1.4px, transparent 1.6px),
+    radial-gradient(circle, var(--orbit-color) 1.4px, transparent 1.6px),
+    radial-gradient(circle, var(--orbit-color) 1.4px, transparent 1.6px);
+  background-size: 8px 3px, 8px 3px, 3px 8px, 3px 8px;
+  background-position: top left, bottom left, top left, top right;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+.orbitBoxOne {
+  width: 424px;
+  height: 424px;
+  --orbit-color: #cdcdcd;
+  animation: orbitClockwise 28s linear infinite;
+}
+
+.orbitBoxTwo {
+  width: 448px;
+  height: 448px;
+  --orbit-color: #b1b1b1;
+  animation: orbitClockwise 40s linear infinite;
+}
+
+.orbitBoxThree {
+  width: 496px;
+  height: 496px;
+  --orbit-color: #dfdfdf;
+  animation: orbitClockwise 52s linear infinite;
+}
+
+.feedback {
+  min-height: 18px;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.feedbackError {
+  color: #b42318;
+}
+
+.feedbackSuccess {
+  color: #4f4f4f;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  text-decoration: none;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  color: #000000;
+  z-index: 1;
+}
+
+.backDiamondButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #111111;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.backIcon {
+  transform: rotate(-45deg);
+  font-size: 15px;
+}
+
+.backLink:hover .backDiamondButton {
+  transform: rotate(45deg) scale(1.08);
+}
+
+.proceedLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  text-decoration: none;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  color: #000000;
+  z-index: 1;
+  animation: proceedSlideIn 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.proceedDiamondButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #111111;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.proceedIcon {
+  transform: rotate(-45deg);
+  font-size: 15px;
+}
+
+.proceedLink:hover .proceedDiamondButton {
+  transform: rotate(45deg) scale(1.08);
+}
+
+.statusBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.statusTitle {
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: clamp(30px, 4.8vw, 30px);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: #000000;
+  text-align: center;
+}
+
+.statusSubtitle {
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #8a8a8a;
+  text-align: center;
+}
+
+.loadingDots {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 20px;
+}
+
+.loadingDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #6f6f6f;
+  animation: loadingBounce 900ms ease-in-out infinite;
+}
+
+.loadingDot:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.loadingDot:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+@keyframes orbitClockwise {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes loadingBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+@keyframes proceedSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-50vw + 50%));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .topBar {
+    padding: 0 16px;
+  }
+
+  .topBarLeft {
+    gap: 8px;
+  }
+
+  .brand,
+  .introLabel {
+    font-size: 9px;
+  }
+
+  .codeBadge {
+    min-height: 24px;
+    padding: 0 10px;
+    font-size: 8px;
+  }
+
+  .inputWrap {
+    gap: 8px;
+  }
+
+  .analysisLabel {
+    left: 16px;
+    font-size: 10px;
+  }
+
+  .inputHint {
+    font-size: 8px;
+  }
+
+  .inputStage {
+    min-height: 336px;
+    padding: 40px 24px;
+  }
+
+  .backLink {
+    left: 16px;
+    bottom: 16px;
+    gap: 14px;
+    font-size: 10px;
+  }
+
+  .backDiamondButton {
+    width: 24px;
+    height: 24px;
+  }
+
+  .backIcon {
+    font-size: 11px;
+  }
+
+  .proceedLink {
+    right: 16px;
+    bottom: 16px;
+    gap: 14px;
+    font-size: 10px;
+  }
+
+  .proceedDiamondButton {
+    width: 24px;
+    height: 24px;
+  }
+
+  .proceedIcon {
+    font-size: 11px;
+  }
+
+  .inputContent {
+    gap: 6px;
+    width: calc(100% - 48px);
+  }
+
+  .inputBox {
+    font-size: clamp(24px, 5vw, 35px);
+    padding: 10px 0;
+  }
+
+  .statusTitle {
+    font-size: clamp(24px, 5vw, 35px);
+  }
+
+  .statusSubtitle {
+    font-size: 12px;
+  }
+
+  .orbitBoxOne {
+    width: 272px;
+    height: 272px;
+  }
+
+  .orbitBoxTwo {
+    width: 288px;
+    height: 288px;
+  }
+
+  .orbitBoxThree {
+    width: 320px;
+    height: 320px;
+  }
+
+  .feedback {
+    font-size: 10px;
+  }
+}

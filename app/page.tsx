@@ -20,16 +20,6 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.topBar}>
-        <div className={styles.topBarLeft}>
-          <Link href="/" className={styles.brand}>
-            SKINSTRIC
-          </Link>
-          <span className={styles.introLabel}>[ INTRO ]</span>
-        </div>
-
-        <div className={styles.codeBadge}>ENTER CODE</div>
-      </div>
       <main className={styles.main}>
         <div
           className={`${styles.heroRail} ${activeSide === "left" ? styles.hoverLeft : ""} ${activeSide === "right" ? styles.hoverRight : ""}`}
@@ -58,7 +48,7 @@ export default function Home() {
           </div>
 
           <Link
-            href="/take-test"
+            href="/testing"
             className={`${styles.sideLink} ${styles.sideLinkRight}`}
             onMouseEnter={() => setActiveSide("right")}
             onMouseLeave={() => setActiveSide(null)}

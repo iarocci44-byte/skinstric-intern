@@ -1,6 +1,6 @@
 .page {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 64px);
   width: 100%;
   flex-direction: column;
   background-color: #ffffff;
