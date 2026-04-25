@@ -171,21 +171,18 @@
   width: 424px;
   height: 424px;
   --orbit-color: #cdcdcd;
-  animation: orbitClockwise 28s linear infinite;
 }
 
 .orbitBoxTwo {
   width: 448px;
   height: 448px;
   --orbit-color: #b1b1b1;
-  animation: orbitClockwise 40s linear infinite;
 }
 
 .orbitBoxThree {
   width: 496px;
   height: 496px;
   --orbit-color: #dfdfdf;
-  animation: orbitClockwise 52s linear infinite;
 }
 
 .feedback {
@@ -230,16 +227,11 @@
   align-items: center;
   justify-content: center;
   transform: rotate(45deg);
-  transition: transform 180ms ease;
 }
 
 .backIcon {
   transform: rotate(-45deg);
   font-size: 15px;
-}
-
-.backLink:hover .backDiamondButton {
-  transform: rotate(45deg) scale(1.08);
 }
 
 .proceedLink {
@@ -256,7 +248,6 @@
   letter-spacing: 0.09em;
   color: #000000;
   z-index: 1;
-  animation: proceedSlideIn 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .proceedDiamondButton {
@@ -268,16 +259,11 @@
   align-items: center;
   justify-content: center;
   transform: rotate(45deg);
-  transition: transform 180ms ease;
 }
 
 .proceedIcon {
   transform: rotate(-45deg);
   font-size: 15px;
-}
-
-.proceedLink:hover .proceedDiamondButton {
-  transform: rotate(45deg) scale(1.08);
 }
 
 .statusBlock {
@@ -321,50 +307,6 @@
   height: 7px;
   border-radius: 50%;
   background-color: #6f6f6f;
-  animation: loadingBounce 900ms ease-in-out infinite;
-}
-
-.loadingDot:nth-child(2) {
-  animation-delay: 140ms;
-}
-
-.loadingDot:nth-child(3) {
-  animation-delay: 280ms;
-}
-
-@keyframes orbitClockwise {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-@keyframes loadingBounce {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.55;
-  }
-
-  50% {
-    transform: translateY(-6px);
-    opacity: 1;
-  }
-}
-
-@keyframes proceedSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(calc(-50vw + 50%));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 @media (max-width: 600px) {

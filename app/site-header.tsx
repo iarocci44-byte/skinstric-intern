@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import locationIcon from "./assets/location.svg";
 
 export default function SiteHeader() {
   return (
@@ -9,7 +11,7 @@ export default function SiteHeader() {
         <Link href="/" className="siteBrand">
           SKINSTRIC
         </Link>
-        <span className="siteIntroLabel">[ INTRO ]</span>
+        <Image src={locationIcon} alt="Location" className="siteIntroLabel" />
       </div>
       <div className="siteCodeBadge">ENTER CODE</div>
     </header>

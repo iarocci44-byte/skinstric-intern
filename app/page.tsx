@@ -1,21 +1,58 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { MouseEvent as ReactMouseEvent, FocusEvent as ReactFocusEvent } from "react";
 import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
 import styles from "./page.module.css";
 
+gsap.registerPlugin(useGSAP);
+
 export default function Home() {
-  const [isHeadingVisible, setIsHeadingVisible] = useState(false);
   const [activeSide, setActiveSide] = useState<"left" | "right" | null>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setIsHeadingVisible(true);
+  function handleSideHoverStart(event: ReactMouseEvent<HTMLAnchorElement> | ReactFocusEvent<HTMLAnchorElement>) {
+    const diamond = event.currentTarget.querySelector(`.${styles.diamondButton}`);
+
+    if (!diamond) {
+      return;
+    }
+
+    gsap.to(diamond, {
+      scale: 1.08,
+      duration: 0.18,
+      ease: "power2.out",
     });
+  }
 
-    return () => cancelAnimationFrame(frame);
+  function handleSideHoverEnd(event: ReactMouseEvent<HTMLAnchorElement> | ReactFocusEvent<HTMLAnchorElement>) {
+    const diamond = event.currentTarget.querySelector(`.${styles.diamondButton}`);
+
+    if (!diamond) {
+      return;
+    }
+
+    gsap.to(diamond, {
+      scale: 1,
+      duration: 0.18,
+      ease: "power2.out",
+    });
+  }
+
+  useGSAP(() => {
+    if (!headingRef.current) {
+      return;
+    }
+
+    gsap.fromTo(
+      headingRef.current,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 0.9, ease: "power2.out" },
+    );
   }, []);
 
   return (
@@ -28,10 +65,22 @@ export default function Home() {
             href="/discover-ai"
             className={`${styles.sideLink} ${styles.sideLinkLeft}`}
             aria-disabled="true"
-            onMouseEnter={() => setActiveSide("left")}
-            onMouseLeave={() => setActiveSide(null)}
-            onFocus={() => setActiveSide("left")}
-            onBlur={() => setActiveSide(null)}
+            onMouseEnter={(event) => {
+              setActiveSide("left");
+              handleSideHoverStart(event);
+            }}
+            onMouseLeave={(event) => {
+              setActiveSide(null);
+              handleSideHoverEnd(event);
+            }}
+            onFocus={(event) => {
+              setActiveSide("left");
+              handleSideHoverStart(event);
+            }}
+            onBlur={(event) => {
+              setActiveSide(null);
+              handleSideHoverEnd(event);
+            }}
             onClick={(event) => event.preventDefault()}
           >
             <span className={styles.diamondButton} aria-hidden="true">
@@ -41,7 +90,7 @@ export default function Home() {
           </Link>
 
           <div className={styles.headingBox}>
-            <h1 className={`${styles.heading} ${isHeadingVisible ? styles.headingVisible : ""}`}>
+            <h1 ref={headingRef} className={styles.heading}>
               <span className={`${styles.headingLine} ${styles.headingLineTop}`}>Sophisticated</span>
               <span className={`${styles.headingLine} ${styles.headingLineBottom}`}>skincare</span>
             </h1>
@@ -50,10 +99,22 @@ export default function Home() {
           <Link
             href="/testing"
             className={`${styles.sideLink} ${styles.sideLinkRight}`}
-            onMouseEnter={() => setActiveSide("right")}
-            onMouseLeave={() => setActiveSide(null)}
-            onFocus={() => setActiveSide("right")}
-            onBlur={() => setActiveSide(null)}
+            onMouseEnter={(event) => {
+              setActiveSide("right");
+              handleSideHoverStart(event);
+            }}
+            onMouseLeave={(event) => {
+              setActiveSide(null);
+              handleSideHoverEnd(event);
+            }}
+            onFocus={(event) => {
+              setActiveSide("right");
+              handleSideHoverStart(event);
+            }}
+            onBlur={(event) => {
+              setActiveSide(null);
+              handleSideHoverEnd(event);
+            }}
           >
             <span>TAKE TEST</span>
             <span className={styles.diamondButton} aria-hidden="true">
