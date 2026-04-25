@@ -1,0 +1,208 @@
+.page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px;
+}
+
+.analysisCopy {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  max-width: 340px;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: #111111;
+  z-index: 3;
+}
+
+.analysisCopyTitle {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.diamondGrid {
+  width: 313.67px;
+  height: 313.67px;
+  position: relative;
+}
+
+.diamondOutline {
+  position: absolute;
+  inset: 0;
+  width: 313.67px;
+  height: 313.67px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1);
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.diamondOutlineStroke {
+  stroke: #ececec;
+  stroke-width: 2;
+  stroke-dasharray: 1 6;
+  stroke-linecap: round;
+}
+
+.diamondTile {
+  position: absolute;
+  width: 153.88px;
+  height: 153.88px;
+  display: grid;
+  place-items: center;
+  color: #ececec;
+  --base-transform: none;
+  transform: var(--base-transform) scale(1);
+  transform-origin: center;
+  transition: transform 180ms ease, color 180ms ease;
+  -webkit-clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  z-index: 2;
+}
+
+.interactiveDiamond {
+  cursor: pointer;
+}
+
+.disabledDiamond {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='%23d11212' stroke-width='2'/%3E%3Cline x1='6' y1='18' x2='18' y2='6' stroke='%23d11212' stroke-width='2'/%3E%3C/svg%3E") 12 12, not-allowed;
+}
+
+.disabledDiamond:hover {
+  color: #d0d0d0;
+}
+
+.diamondShape {
+  width: 153.88px;
+  height: 153.88px;
+}
+
+.diamondLabel {
+  position: absolute;
+  width: 74%;
+  text-align: center;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: -2%;
+  color: #111111;
+  pointer-events: none;
+  user-select: none;
+  text-wrap: balance;
+}
+
+.diamondTile:hover {
+  color: #d0d0d0;
+}
+
+.interactiveDiamond:hover {
+  transform: var(--base-transform) scale(1.08);
+}
+
+.top {
+  left: 50%;
+  top: -4px;
+  --base-transform: translateX(-50%);
+}
+
+.right {
+  right: -4px;
+  top: 50%;
+  --base-transform: translateY(-50%);
+}
+
+.bottom {
+  left: 50%;
+  bottom: -4px;
+  --base-transform: translateX(-50%);
+}
+
+.left {
+  left: -4px;
+  top: 50%;
+  --base-transform: translateY(-50%);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  text-decoration: none;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #000000;
+  z-index: 3;
+}
+
+.backDiamondButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #111111;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+
+.backIcon {
+  transform: rotate(-45deg);
+  font-size: 15px;
+}
+
+.summaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  text-decoration: none;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #000000;
+  z-index: 3;
+}
+
+.summaryDiamondButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #111111;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+
+.summaryIcon {
+  transform: rotate(-45deg);
+  font-size: 15px;
+}
+
+.title {
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: clamp(22px, 5vw, 48px);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #111111;
+}

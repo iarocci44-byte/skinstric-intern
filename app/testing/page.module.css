@@ -212,8 +212,8 @@
   text-decoration: none;
   font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
   font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.09em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: #000000;
   z-index: 1;
 }
@@ -244,8 +244,8 @@
   text-decoration: none;
   font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
   font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.09em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: #000000;
   z-index: 1;
 }

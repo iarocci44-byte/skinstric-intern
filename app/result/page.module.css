@@ -38,6 +38,51 @@
   width: min(1180px, 100%);
 }
 
+.processingScene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(420px, 100%);
+  height: 320px;
+}
+
+.processingContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.processingTitle {
+  margin: 0;
+  text-align: center;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  color: #111111;
+}
+
+.loadingDots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 12px;
+}
+
+.loadingDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #111111;
+  opacity: 0.45;
+}
+
 .squareSet {
   position: relative;
   display: flex;
@@ -287,6 +332,56 @@
   opacity: 1;
 }
 
+.successDialogOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(56px, 14vh, 160px);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.successDialogCard {
+  min-width: 300px;
+  max-width: 90vw;
+  border: 1px solid #111111;
+  background-color: #ffffff;
+  padding: 22px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.successDialogText {
+  margin: 0;
+  text-align: center;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #111111;
+}
+
+.successDialogButton {
+  min-width: 88px;
+  border: 1px solid #111111;
+  background-color: #ffffff;
+  color: #111111;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.successDialogButton:hover {
+  background-color: #f2f2f2;
+}
+
 .statusMessage {
   position: absolute;
   bottom: 24px;
@@ -314,8 +409,8 @@
   text-decoration: none;
   font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
   font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.09em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: #000000;
   z-index: 3;
 }
@@ -361,6 +456,16 @@
   .scene {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .processingScene {
+    width: min(280px, 100%);
+    height: 220px;
+  }
+
+  .processingTitle {
+    font-size: 10px;
+    letter-spacing: 0.09em;
   }
 
   .squareSet {

@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FocusEvent as ReactFocusEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import shutterIcon from "../assets/camera-icon.svg";
@@ -16,6 +17,7 @@ const PHASE_TWO_API_URL = "https://us-central1-api-skinstric-ai.cloudfunctions.n
 const PHASE_TWO_RESPONSE_STORAGE_KEY = "skinstric.result.phaseTwoResponse";
 
 export default function ResultPage() {
+	const router = useRouter();
 	const pageRef = useRef<HTMLDivElement>(null);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const displayVideoRef = useRef<HTMLVideoElement>(null);
@@ -28,6 +30,7 @@ export default function ResultPage() {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [cameraActive, setCameraActive] = useState(false);
 	const [cameraReady, setCameraReady] = useState(false);
+	const [successDialogOpen, setSuccessDialogOpen] = useState(false);
 
 	function handleIconHoverStart(event: ReactMouseEvent<HTMLButtonElement> | ReactFocusEvent<HTMLButtonElement>) {
 		gsap.to(event.currentTarget, {
@@ -99,7 +102,33 @@ export default function ResultPage() {
 				});
 			});
 		},
-		{ scope: pageRef },
+		{ scope: pageRef, dependencies: [submissionPhase], revertOnUpdate: true },
+	);
+
+	useGSAP(
+		() => {
+			if (!pageRef.current || submissionPhase !== "processing") {
+				return;
+			}
+
+			const loadingDots = gsap.utils.toArray<HTMLElement>(`.${styles.loadingDot}`, pageRef.current);
+
+			if (!loadingDots.length) {
+				return;
+			}
+
+			gsap.set(loadingDots, { y: 0, opacity: 0.45 });
+			gsap.to(loadingDots, {
+				y: -6,
+				opacity: 1,
+				duration: 0.45,
+				ease: "sine.inOut",
+				yoyo: true,
+				repeat: -1,
+				stagger: 0.14,
+			});
+		},
+		{ scope: pageRef, dependencies: [submissionPhase], revertOnUpdate: true },
 	);
 
 	async function submitPhaseTwo(base64Image: string) {
@@ -197,6 +226,15 @@ export default function ResultPage() {
 		previewRafRef.current = requestAnimationFrame(drawPreviewFrame);
 	}
 
+	function showSuccessAndGoToSelect() {
+		setSuccessDialogOpen(true);
+	}
+
+	function handleSuccessDialogOk() {
+		setSuccessDialogOpen(false);
+		router.push("/select");
+	}
+
 	async function activateCamera() {
 		if (submissionPhase === "processing") {
 			return;
@@ -287,7 +325,7 @@ export default function ResultPage() {
 			setSubmissionPhase("processing");
 			setErrorMessage("");
 			await submitPhaseTwo(base64);
-			setSubmissionPhase("done");
+			showSuccessAndGoToSelect();
 		} catch (error) {
 			if (error instanceof DOMException && error.name === "AbortError") {
 				return;
@@ -320,7 +358,7 @@ export default function ResultPage() {
 
 			const base64 = await fileToBase64(file);
 			await submitPhaseTwo(base64);
-			setSubmissionPhase("done");
+			showSuccessAndGoToSelect();
 		} catch (error) {
 			if (error instanceof DOMException && error.name === "AbortError") {
 				return;
@@ -349,81 +387,91 @@ export default function ResultPage() {
 		<div ref={pageRef} className={styles.page}>
             <span className={styles.analysisLabel}>TO START ANALYSIS</span>
 			<main className={styles.main}>
-				<div className={styles.scene}>
-					<div className={styles.squareSet}>
-						<span className={`${styles.orbitBox} ${styles.orbitBoxOne}`} />
-						<span className={`${styles.orbitBox} ${styles.orbitBoxTwo}`} />
-						<span className={`${styles.orbitBox} ${styles.orbitBoxThree}`} />
-						<button
-							type="button"
-							className={styles.iconButton}
-							onClick={activateCamera}
-							onMouseEnter={handleIconHoverStart}
-							onMouseLeave={handleIconHoverEnd}
-							onFocus={handleIconHoverStart}
-							onBlur={handleIconHoverEnd}
-							aria-label="Activate camera"
-						>
-							<Image src={shutterIcon} alt="" className={styles.actionIconImage} width={26} height={26} />
-						</button>
-						<div className={`${styles.callout} ${styles.calloutLeft}`} aria-hidden="true">
-							<div className={styles.calloutTrack}>
-								<span className={styles.calloutLine} />
-								<span className={styles.calloutDot} />
-								<p className={styles.calloutBlurb}>
-									ALLOW A.I.
-									<br />
-									TO SCAN YOUR FACE
-								</p>
+				{submissionPhase === "processing" ? (
+					<div className={styles.processingScene}>
+						<span className={`${styles.orbitBox} ${styles.orbitBoxOne}`} aria-hidden="true" />
+						<span className={`${styles.orbitBox} ${styles.orbitBoxTwo}`} aria-hidden="true" />
+						<span className={`${styles.orbitBox} ${styles.orbitBoxThree}`} aria-hidden="true" />
+						<div className={styles.processingContent}>
+							<p className={styles.processingTitle}>PREPARING YOUR ANALYSIS</p>
+							<div className={styles.loadingDots} aria-hidden="true">
+								<span className={styles.loadingDot} />
+								<span className={styles.loadingDot} />
+								<span className={styles.loadingDot} />
 							</div>
 						</div>
 					</div>
-
-					<div className={styles.squareSet}>
-						<span className={`${styles.orbitBox} ${styles.orbitBoxOne}`} />
-						<span className={`${styles.orbitBox} ${styles.orbitBoxTwo}`} />
-						<span className={`${styles.orbitBox} ${styles.orbitBoxThree}`} />
-						<button
-							type="button"
-							className={styles.iconButton}
-							onClick={openFilePicker}
-							onMouseEnter={handleIconHoverStart}
-							onMouseLeave={handleIconHoverEnd}
-							onFocus={handleIconHoverStart}
-							onBlur={handleIconHoverEnd}
-							aria-label="Upload image from device"
-						>
-							<Image src={galleryIcon} alt="" className={styles.actionIconImage} width={26} height={26} />
-						</button>
-						<div className={`${styles.callout} ${styles.calloutRight}`} aria-hidden="true">
-							<div className={styles.calloutTrack}>
-								<span className={styles.calloutLine} />
-								<span className={styles.calloutDot} />
-								<p className={styles.calloutBlurb}>
-									ALLOW A.I.
-									<br />
-									ACCESS TO GALLERY
-								</p>
+				) : (
+					<div className={styles.scene}>
+						<div className={styles.squareSet}>
+							<span className={`${styles.orbitBox} ${styles.orbitBoxOne}`} />
+							<span className={`${styles.orbitBox} ${styles.orbitBoxTwo}`} />
+							<span className={`${styles.orbitBox} ${styles.orbitBoxThree}`} />
+							<button
+								type="button"
+								className={styles.iconButton}
+								onClick={activateCamera}
+								onMouseEnter={handleIconHoverStart}
+								onMouseLeave={handleIconHoverEnd}
+								onFocus={handleIconHoverStart}
+								onBlur={handleIconHoverEnd}
+								aria-label="Activate camera"
+							>
+								<Image src={shutterIcon} alt="" className={styles.actionIconImage} width={26} height={26} />
+							</button>
+							<div className={`${styles.callout} ${styles.calloutLeft}`} aria-hidden="true">
+								<div className={styles.calloutTrack}>
+									<span className={styles.calloutLine} />
+									<span className={styles.calloutDot} />
+									<p className={styles.calloutBlurb}>
+										ALLOW A.I.
+										<br />
+										TO SCAN YOUR FACE
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<input
-						ref={fileInputRef}
-						type="file"
-						accept="image/*"
-						className={styles.fileInput}
-						onChange={(e) => { void handleFileChange(e); }}
-					/>
-					<canvas ref={canvasRef} className={styles.fileInput} aria-hidden="true" />
-				</div>
+						<div className={styles.squareSet}>
+							<span className={`${styles.orbitBox} ${styles.orbitBoxOne}`} />
+							<span className={`${styles.orbitBox} ${styles.orbitBoxTwo}`} />
+							<span className={`${styles.orbitBox} ${styles.orbitBoxThree}`} />
+							<button
+								type="button"
+								className={styles.iconButton}
+								onClick={openFilePicker}
+								onMouseEnter={handleIconHoverStart}
+								onMouseLeave={handleIconHoverEnd}
+								onFocus={handleIconHoverStart}
+								onBlur={handleIconHoverEnd}
+								aria-label="Upload image from device"
+							>
+								<Image src={galleryIcon} alt="" className={styles.actionIconImage} width={26} height={26} />
+							</button>
+							<div className={`${styles.callout} ${styles.calloutRight}`} aria-hidden="true">
+								<div className={styles.calloutTrack}>
+									<span className={styles.calloutLine} />
+									<span className={styles.calloutDot} />
+									<p className={styles.calloutBlurb}>
+										ALLOW A.I.
+										<br />
+										ACCESS TO GALLERY
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<input
+							ref={fileInputRef}
+							type="file"
+							accept="image/*"
+							className={styles.fileInput}
+							onChange={(e) => { void handleFileChange(e); }}
+						/>
+						<canvas ref={canvasRef} className={styles.fileInput} aria-hidden="true" />
+					</div>
+				)}
 			</main>
-			{submissionPhase === "processing" ? (
-				<p className={styles.statusMessage} aria-live="polite">Uploading...</p>
-			) : null}
-			{submissionPhase === "done" ? (
-				<p className={styles.statusMessage} aria-live="polite">Upload complete.</p>
-			) : null}
 			{submissionPhase === "error" ? (
 				<p className={`${styles.statusMessage} ${styles.statusMessageError}`} aria-live="polite">{errorMessage}</p>
 			) : null}
@@ -459,6 +507,20 @@ export default function ResultPage() {
 					>
 						&#x2715;
 					</button>
+				</div>
+			) : null}
+			{successDialogOpen ? (
+				<div className={styles.successDialogOverlay} role="dialog" aria-modal="true" aria-label="Analysis complete">
+					<div className={styles.successDialogCard}>
+						<p className={styles.successDialogText}>Image analyzed sucessfully!</p>
+						<button
+							type="button"
+							className={styles.successDialogButton}
+							onClick={handleSuccessDialogOk}
+						>
+							OK
+						</button>
+					</div>
 				</div>
 			) : null}
 			<video ref={displayVideoRef} className={styles.hiddenVideoFeed} muted playsInline />
