@@ -209,7 +209,7 @@ export default function TestingPage() {
 				<span>BACK</span>
 			</Link>
 			{submissionPhase === "done" ? (
-				<Link href="#" className={styles.proceedLink}>
+				<Link href="/result" className={styles.proceedLink}>
 					<span>PROCEED</span>
 					<span className={styles.proceedDiamondButton} aria-hidden="true">
 						<BsFillCaretRightFill className={styles.proceedIcon} />

@@ -1,0 +1,342 @@
+.page {
+  display: flex;
+  position: relative;
+  min-height: calc(100vh - 64px);
+  width: 100%;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+}
+
+.analysisLabel {
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #000000;
+}
+
+.scene {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 28px;
+  width: min(1180px, 100%);
+}
+
+.squareSet {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+}
+
+.orbitBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  --orbit-color: #bfbfbf;
+  border-radius: 0;
+  pointer-events: none;
+  transform-origin: center;
+  background-image:
+    radial-gradient(circle, var(--orbit-color) 1.4px, transparent 1.6px),
+    radial-gradient(circle, var(--orbit-color) 1.4px, transparent 1.6px),
+    radial-gradient(circle, var(--orbit-color) 1.4px, transparent 1.6px),
+    radial-gradient(circle, var(--orbit-color) 1.4px, transparent 1.6px);
+  background-size: 8px 3px, 8px 3px, 3px 8px, 3px 8px;
+  background-position: top left, bottom left, top left, top right;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+.orbitBoxOne {
+  width: 254px;
+  height: 254px;
+  --orbit-color: #cdcdcd;
+  animation: orbitClockwise 28s linear infinite;
+}
+
+.orbitBoxTwo {
+  width: 269px;
+  height: 269px;
+  --orbit-color: #b1b1b1;
+  animation: orbitClockwise 40s linear infinite;
+}
+
+.orbitBoxThree {
+  width: 298px;
+  height: 298px;
+  --orbit-color: #dfdfdf;
+  animation: orbitClockwise 52s linear infinite;
+}
+
+.iconButton {
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  color: #111111;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: transform 180ms ease;
+}
+
+.iconButton:hover {
+  transform: translateY(-2px);
+}
+
+.actionIconImage {
+  width: 136px;
+  height: 136px;
+  object-fit: contain;
+}
+
+.callout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+  --line-length: 124px;
+  --mask-size: 144px;
+}
+
+.calloutTrack {
+  position: absolute;
+  left: var(--start-x);
+  top: var(--start-y);
+  transform: rotate(var(--line-angle));
+  transform-origin: 0 50%;
+}
+
+.calloutTrack::before {
+  content: "";
+  position: absolute;
+  left: calc((var(--mask-size) / -2));
+  top: calc((var(--mask-size) / -2));
+  width: var(--mask-size);
+  height: var(--mask-size);
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.calloutLine {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: var(--line-length);
+  height: 1px;
+  background-color: #111111;
+}
+
+.calloutDot {
+  position: absolute;
+  z-index: 1;
+  left: calc(var(--line-length) - 4px);
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #111111;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.calloutBlurb {
+  position: absolute;
+  z-index: 1;
+  left: calc(var(--line-length) + 10px);
+  top: -11px;
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  color: #111111;
+  transform: rotate(var(--text-rotate));
+  transform-origin: left center;
+  white-space: nowrap;
+}
+
+.calloutLeft {
+  --start-x: 0px;
+  --start-y: 0px;
+  --line-angle: -45deg;
+  --text-rotate: 45deg;
+}
+
+.calloutRight {
+  --start-x: 0px;
+  --start-y: 0px;
+  --line-angle: 135deg;
+  --text-rotate: -135deg;
+}
+
+.calloutRight .calloutBlurb {
+  left: calc(var(--line-length) - -15px);
+  transform: translateX(-100%) rotate(var(--text-rotate));
+  transform-origin: right center;
+  text-align: right;
+}
+
+.fileInput {
+  display: none;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  text-decoration: none;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.09em;
+  color: #000000;
+  z-index: 3;
+}
+
+.backDiamondButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #111111;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.backIcon {
+  transform: rotate(-45deg);
+  font-size: 15px;
+}
+
+.backLink:hover .backDiamondButton {
+  transform: rotate(45deg) scale(1.08);
+}
+
+.statusRow {
+  display: flex;
+  gap: 24px;
+}
+
+.statusText {
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4a4a4a;
+}
+
+.preview {
+  width: min(640px, 100%);
+  min-height: 160px;
+  max-height: 320px;
+  object-fit: cover;
+  border: 1px solid #d8d8d8;
+  background-color: #f6f6f6;
+}
+
+@keyframes orbitClockwise {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (max-width: 1100px) {
+  .scene {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .squareSet {
+    width: 170px;
+    height: 170px;
+  }
+
+  .orbitBoxOne {
+    width: 136px;
+    height: 136px;
+  }
+
+  .orbitBoxTwo {
+    width: 144px;
+    height: 144px;
+  }
+
+  .orbitBoxThree {
+    width: 160px;
+    height: 160px;
+  }
+
+  .actionIconImage {
+    width: 136px;
+    height: 136px;
+  }
+
+  .callout {
+    --line-length: 120px;
+    --mask-size: 144px;
+  }
+
+  .calloutLeft {
+    --start-y: 0px;
+  }
+
+  .calloutRight {
+    --start-y: 0px;
+  }
+
+  .calloutBlurb {
+    font-size: 7px;
+  }
+
+  .statusRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .backLink {
+    left: 16px;
+    bottom: 16px;
+    gap: 14px;
+    font-size: 10px;
+  }
+
+  .backDiamondButton {
+    width: 24px;
+    height: 24px;
+  }
+
+  .backIcon {
+    font-size: 11px;
+  }
+}
