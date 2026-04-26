@@ -198,16 +198,6 @@
   text-transform: uppercase;
 }
 
-.topPrediction {
-  margin: 0;
-  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
-  font-size: clamp(18px, 2.2vw, 28px);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: #111111;
-  line-height: 1.1;
-}
-
 .predictionRow {
   display: flex;
   align-items: center;
@@ -218,28 +208,6 @@
   font-weight: 400;
   letter-spacing: -0.01em;
   color: #111111;
-}
-
-.predictionBar {
-  flex: 1;
-  height: 3px;
-  background-color: #e0e0e0;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.predictionBarFill {
-  height: 100%;
-  background-color: #111111;
-  border-radius: 2px;
-  transition: width 0.4s ease;
-}
-
-.predictionPct {
-  min-width: 36px;
-  text-align: right;
-  font-size: 11px;
-  color: #8a8a8a;
 }
 
 .optionList {
