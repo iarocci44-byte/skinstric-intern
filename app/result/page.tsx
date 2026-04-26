@@ -153,7 +153,21 @@ export default function ResultPage() {
 		}
 
 		const contentType = response.headers.get("content-type") ?? "";
-		const data = contentType.includes("application/json") && responseText ? JSON.parse(responseText) : responseText;
+		const data = (() => {
+			if (!responseText) {
+				return null;
+			}
+
+			if (contentType.includes("application/json")) {
+				return JSON.parse(responseText);
+			}
+
+			try {
+				return JSON.parse(responseText);
+			} catch {
+				return responseText;
+			}
+		})();
 		window.localStorage.setItem(PHASE_TWO_RESPONSE_STORAGE_KEY, JSON.stringify(data));
 	}
 

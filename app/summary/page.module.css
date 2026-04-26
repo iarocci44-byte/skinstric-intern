@@ -1,0 +1,439 @@
+.page {
+  --content-height: clamp(320px, 52dvh, 544px);
+  --left-box-height: clamp(72px, 10dvh, 104px);
+  min-height: calc(100dvh - 64px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 80px 32px 104px;
+  overflow-x: hidden;
+}
+
+.copyBlock {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: #111111;
+}
+
+.copyTitle {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.copyHeading {
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+/* ── Three-column layout ─────────────────────────────────── */
+
+.layout {
+  display: flex;
+  gap: 12px;
+  width: min(calc(100vw - 64px), 1848px);
+  max-width: 1848px;
+  margin-top: clamp(120px, 16dvh, 144px);
+  align-items: start;
+}
+
+/* ── Left column — 3 stacked boxes ──────────────────────── */
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 0 3 208px;
+  gap: 8px;
+  width: 100%;
+  max-width: 208px;
+  min-width: 120px;
+}
+
+.leftBox {
+  background-color: #f2f2f2;
+  border: 0;
+  border-top: 1px solid #111111;
+  text-align: left;
+  cursor: pointer;
+  padding: 18px 20px;
+  width: 100%;
+  height: var(--left-box-height);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+  overflow: hidden;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.leftBoxActive {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.leftBoxActive .leftBoxLabel,
+.leftBoxActive .leftBoxValue {
+  color: #ffffff;
+}
+
+.leftBoxLabel,
+.leftBoxValue {
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #111111;
+  line-height: 1.1;
+}
+
+.leftBoxLabel {
+  text-transform: uppercase;
+}
+
+/* ── Center box ──────────────────────────────────────────── */
+
+.centerBox {
+  background-color: #f2f2f2;
+  border-top: 1px solid #111111;
+  flex: 1 1 1168px;
+  width: 100%;
+  height: var(--content-height);
+  min-width: 0;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.centerSelectedTitle {
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: clamp(20px, 2.5vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #111111;
+  line-height: 1.1;
+}
+
+.centerCircleWrap {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.percentageCircle {
+  width: min(62vh, 72%, 420px);
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  transform: rotate(-90deg);
+}
+
+.percentageCircleTrack {
+  fill: none;
+  stroke: #dbdbdb;
+  stroke-width: 10;
+}
+
+.percentageCircleProgress {
+  fill: none;
+  stroke: #8f8f8f;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.centerCircleValue {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: clamp(28px, 5vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #111111;
+}
+
+/* ── Right box ───────────────────────────────────────────── */
+
+.rightBox {
+  background-color: #f2f2f2;
+  border-top: 1px solid #111111;
+  flex: 0 4 448px;
+  width: 100%;
+  max-width: 448px;
+  height: var(--content-height);
+  min-width: 220px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+}
+
+/* ── Shared inner typography ─────────────────────────────── */
+
+.boxTitle {
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #8a8a8a;
+  text-transform: uppercase;
+}
+
+.topPrediction {
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #111111;
+  line-height: 1.1;
+}
+
+.predictionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #111111;
+}
+
+.predictionBar {
+  flex: 1;
+  height: 3px;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.predictionBarFill {
+  height: 100%;
+  background-color: #111111;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.predictionPct {
+  min-width: 36px;
+  text-align: right;
+  font-size: 11px;
+  color: #8a8a8a;
+}
+
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+.optionButton {
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  padding: 8px 10px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  text-align: left;
+  color: #111111;
+  transition: color 180ms ease;
+}
+
+.optionButtonActive {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.optionLabel,
+.optionValue {
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.optionLabelWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.optionDiamond {
+  width: 12px;
+  height: 12px;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.optionDiamondDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentColor;
+  transform: rotate(-45deg);
+}
+
+.optionValue {
+  color: #8a8a8a;
+}
+
+.optionButtonActive .optionValue {
+  color: #ffffff;
+}
+
+.rightPanelTitle {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #111111;
+}
+
+.bottomInstruction {
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: #8a8a8a;
+  text-align: center;
+  z-index: 3;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  left: 32px;
+  bottom: 24px;
+  text-decoration: none;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #000000;
+  z-index: 3;
+}
+
+.backDiamondButton,
+.homeDiamondButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #111111;
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+
+.backIcon,
+.homeIcon {
+  transform: rotate(-45deg);
+  font-size: 15px;
+}
+
+.homeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  right: 32px;
+  bottom: 24px;
+  text-decoration: none;
+  font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #000000;
+  z-index: 3;
+}
+
+@media (max-width: 980px) {
+  .page {
+    padding: 80px 20px 104px;
+  }
+
+  .copyBlock {
+    left: 20px;
+  }
+
+  .copyHeading {
+    font-size: clamp(42px, 12vw, 72px);
+  }
+
+  .layout {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 128px;
+  }
+
+  .leftColumn,
+  .leftBox,
+  .centerBox,
+  .rightBox {
+    width: 100%;
+    max-width: none;
+  }
+
+  .centerBox,
+  .rightBox {
+    height: auto;
+    min-height: 320px;
+  }
+
+  .percentageCircle {
+    width: min(72vw, 320px);
+  }
+
+  .backLink {
+    left: 20px;
+    bottom: 20px;
+  }
+
+  .homeLink {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .bottomInstruction {
+    width: calc(100% - 160px);
+    bottom: 28px;
+  }
+}
