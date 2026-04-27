@@ -107,7 +107,7 @@
 .centerBox {
   background-color: #f2f2f2;
   border-top: 1px solid #111111;
-  flex: 1 1 1168px;
+  flex: 1 1 auto;
   width: 100%;
   height: var(--content-height);
   min-width: 0;
@@ -174,7 +174,7 @@
 .rightBox {
   background-color: #f2f2f2;
   border-top: 1px solid #111111;
-  flex: 0 4 448px;
+  flex: 0 4;
   width: 100%;
   max-width: 448px;
   height: var(--content-height);
@@ -383,11 +383,36 @@
   .centerBox,
   .rightBox {
     height: auto;
+  }
+
+  .centerBox {
+    min-height: 0;
+    height: fit-content;
+    padding: 14px 16px 12px;
+    gap: 8px;
+    display: grid;
+    grid-template-rows: auto auto;
+    align-content: start;
+  }
+
+  .rightBox {
     min-height: 320px;
   }
 
+  .centerCircleWrap {
+    flex: 0 0 auto;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
   .percentageCircle {
-    width: min(72vw, 320px);
+    width: 100%;
+    max-width: 220px;
   }
 
   .backLink {
