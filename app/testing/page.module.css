@@ -109,8 +109,8 @@
   font-family: "Roobert TRIAL", Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #6a6a6a;
+  letter-spacing: -0.02em;
+  color: #000000;
 }
 
 .inputBox {
@@ -124,7 +124,7 @@
   font-size: clamp(30px, 4.8vw, 53px);
   line-height: 1;
   font-weight: 400;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.07em;
   color: #000000;
   outline: none;
   text-align: center;

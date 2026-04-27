@@ -95,7 +95,6 @@
   letter-spacing: 0.09em;
   color: #000000;
   z-index: 1;
-  transition: opacity 420ms ease, visibility 420ms ease;
 }
 
 .sideLink::before {
@@ -143,29 +142,6 @@
   font-size: 15px;
 }
 
-.hoverLeft .headingLineTop {
-  transform: translateX(280px);
-}
-
-.hoverLeft .headingLineBottom {
-  transform: translateX(360px);
-}
-
-.hoverRight .headingLineTop {
-  transform: translateX(-280px);
-}
-
-.hoverRight .headingLineBottom {
-  transform: translateX(-360px);
-}
-
-.hoverLeft .sideLinkRight,
-.hoverRight .sideLinkLeft {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .heading {
   font-family: 'Roobert TRIAL', Arial, Helvetica, sans-serif;
   font-size: 96px;
@@ -182,7 +158,6 @@
   display: block;
   width: 100%;
   text-align: center;
-  transition: transform 1300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .headingLineBottom {
@@ -302,21 +277,6 @@ a.secondary {
     height: 34px;
   }
 
-  .hoverLeft .headingLineTop {
-    transform: translateX(180px);
-  }
-
-  .hoverLeft .headingLineBottom {
-    transform: translateX(240px);
-  }
-
-  .hoverRight .headingLineTop {
-    transform: translateX(-180px);
-  }
-
-  .hoverRight .headingLineBottom {
-    transform: translateX(-240px);
-  }
 }
 
 @media (max-width: 600px) {
@@ -365,20 +325,6 @@ a.secondary {
 
   .sideLink::before {
     display: none;
-  }
-
-  .hoverLeft .headingLineTop,
-  .hoverLeft .headingLineBottom,
-  .hoverRight .headingLineTop,
-  .hoverRight .headingLineBottom {
-    transform: none;
-  }
-
-  .hoverLeft .sideLinkRight,
-  .hoverRight .sideLinkLeft {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
   }
 
   .headingBox {

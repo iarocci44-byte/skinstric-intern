@@ -350,7 +350,7 @@ export default function TestingPage() {
 										ref={inputRef}
 										id="intro"
 										type="text"
-										placeholder={activeField === "name" ? "Introduce Yourself" : "your city name"}
+										placeholder={activeField === "name" ? "Introduce Yourself" : "Where are you from?"}
 										className={`${styles.inputBox} ${isTextOverflowing ? styles.inputBoxOverflow : ""} ${errorMessage ? styles.inputBoxError : ""}`}
 										value={inputValue}
 										autoComplete="off"
